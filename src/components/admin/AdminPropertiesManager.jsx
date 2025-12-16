@@ -223,8 +223,8 @@ const AdminPropertiesManager = () => {
           <h2 className="text-xl font-bold">{isAddingNew ? 'Add New Property' : 'Edit Property'}</h2>
           <div className="space-x-2">
             <Button variant="outline" onClick={() => setEditingProperty(null)} disabled={isSaving}>Cancel</Button>
-            <Button onClick={handleSave} className="bg-maroon hover:bg-maroon-dark" disabled={isSaving}>
-              <Save className="w-4 h-4 mr-2" /> 
+            <Button onClick={handleSave} className="bg-maroon hover:bg-maroon-dark" disabled={isSaving} style={{ color: "white" }}>
+              <Save className="w-4 h-2 mr-2" style={{ color: "white" }} /> 
               {isSaving ? 'Saving...' : 'Save Changes'}
             </Button>
           </div>
@@ -539,11 +539,13 @@ const AdminPropertiesManager = () => {
 
                <div className="p-4 border rounded bg-gray-50">
                  <h3 className="font-semibold mb-2">Internal Virtual Tour Rooms</h3>
-                 <p className="text-sm text-gray-500 mb-4">Or build a simple tour using images below.</p>
+                 <p className="text-sm text-gray-500 mb-4">Or upload a panoramic image to create a virtual tour.</p>
                  {editingProperty.virtualTour?.rooms?.map((room, idx) => (
-                   <div key={idx} className="flex flex-col md:flex-row gap-4 mb-4 items-start border-b pb-4">
+                   <div key={idx} className="flex flex-col md:flex-row gap-20 mb-4 items-start border-b pb-4">
                       <div className="w-full md:w-48">
                          <ImageUploader 
+                             label="Add Panoramic Image"
+                             multiple={false}
                              images={room.image ? [room.image] : []}
                              onImagesChange={(newImages) => {
                                 const newRooms = [...(editingProperty.virtualTour?.rooms || [])];
@@ -553,7 +555,8 @@ const AdminPropertiesManager = () => {
                              multiple={false}
                          />
                       </div>
-                      <div className="flex-grow space-y-2 w-full">
+                      <div className="flex-grow space-y-1">
+                        <Label>Name of the space</Label>
                         <Input 
                           placeholder="Room Name" 
                           value={room.name} 
@@ -563,7 +566,8 @@ const AdminPropertiesManager = () => {
                              handleChange('virtualTour', { ...editingProperty.virtualTour, rooms: newRooms });
                           }}
                         />
-                        <Input 
+                        <Label>Description</Label>
+                        <Input  
                           placeholder="Description" 
                           value={room.description} 
                            onChange={(e) => {
@@ -621,7 +625,7 @@ const AdminPropertiesManager = () => {
           <Button variant="outline" onClick={handleExport} className="flex-1 sm:flex-none border-gray-300">
              <Download className="w-4 h-4 mr-2" /> Export
           </Button>
-          <Button onClick={handleAddNew} className="flex-1 sm:flex-none bg-maroon hover:bg-maroon-dark">
+          <Button onClick={handleAddNew} className="flex-1 sm:flex-none bg-maroon hover:bg-maroon-dark" style={{ color: 'white' }}>
             <Plus className="w-4 h-4 mr-2" /> Add
           </Button>
         </div>

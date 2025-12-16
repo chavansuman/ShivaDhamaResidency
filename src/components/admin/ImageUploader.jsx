@@ -7,7 +7,7 @@ import { Upload, X, Image as ImageIcon, Trash2, Loader2, Plus, Link as LinkIcon 
 import { useToast } from '@/components/ui/use-toast';
 import { uploadFile } from '@/lib/storage';
 
-const ImageUploader = ({ images = [], onImagesChange, label = "Images", multiple = true }) => {
+const ImageUploader = ({ images = [], onImagesChange, label = "Add Images", multiple = true }) => {
   const fileInputRef = useRef(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [urlInput, setUrlInput] = useState('');
@@ -127,35 +127,15 @@ const ImageUploader = ({ images = [], onImagesChange, label = "Images", multiple
       {label && <Label>{label}</Label>}
       
       {/* Upload Controls */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="flex-grow flex gap-2">
-            <div className="relative flex-grow">
-                <LinkIcon className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                <Input 
-                    placeholder="Paste image URL..." 
-                    value={urlInput}
-                    onChange={(e) => setUrlInput(e.target.value)}
-                    onKeyDown={handleUrlKeyDown}
-                    className="pl-9"
-                />
-            </div>
-            <Button 
-                type="button" 
-                variant="secondary"
-                onClick={handleUrlSubmit}
-                disabled={!urlInput}
-            >
-                <Plus className="w-4 h-4" />
-            </Button>
-        </div>
-        
+      <div >
         <div className="flex-shrink-0">
              <input 
                 type="file" 
                 ref={fileInputRef} 
                 className="hidden" 
                 accept="image/png, image/jpeg, image/jpg, image/webp" 
-                multiple={multiple}
+                // multiple={multiple}
+                multiple={false}
                 onChange={handleFileUpload}
             />
             <Button 
@@ -171,7 +151,7 @@ const ImageUploader = ({ images = [], onImagesChange, label = "Images", multiple
                   </>
                 ) : (
                   <>
-                    <Upload className="w-4 h-4 mr-2" /> Upload Files
+                    <Upload className="w-4 h-4 mr-2" /> Upload File
                   </>
                 )}
             </Button>
