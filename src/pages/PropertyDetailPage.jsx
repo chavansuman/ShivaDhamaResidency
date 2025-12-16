@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { useProperties } from '@/lib/useProperties';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
+import PanoramaViewer from '@/components/PanoramaViewer';
 
 const PropertyDetailPage = () => {
   const { id } = useParams();
@@ -155,6 +156,14 @@ const PropertyDetailPage = () => {
               )}
               
               <ImageGallery images={property.images} />
+
+              <PanoramaViewer
+                image="https://cdn-ilblmij.nitrocdn.com/DLIZsQDvOcOKWcuSosUGkNHekDNKXxlQ/assets/images/optimized/rev-8feb66c/threesixty.tours/wp-content/uploads/2024/10/traditionalimage_upload-170913_1505326171212-scaled.jpg"
+                height="500px"
+                autoLoad={true}
+                showZoomCtrl={true}
+                showFullscreenCtrl={true}
+              />
               
               <div className="mt-8 bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Rent & Area Details</h2>
