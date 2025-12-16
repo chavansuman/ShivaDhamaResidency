@@ -15,7 +15,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 
 const AdminPage = () => {
-  const [mainTab, setMainTab] = useState('content');
+  const [mainTab, setMainTab] = useState('properties');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   
@@ -90,7 +90,7 @@ const AdminPage = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-500 mt-1">Manage all aspects of your property website</p>
+            <p className="text-gray-500 mt-1">Manage your properties</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center hidden md:flex">
@@ -126,44 +126,44 @@ const AdminPage = () => {
         <Tabs value={mainTab} onValueChange={setMainTab} className="w-full space-y-8">
           <div className="flex justify-center overflow-x-auto pb-2">
             <TabsList className="bg-white p-1 border border-gray-200 rounded-xl shadow-sm h-auto inline-flex min-w-max">
-               <TabsTrigger 
+               {/* <TabsTrigger 
                  value="content" 
                  className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
                >
                  <LayoutDashboard className="w-4 h-4" /> Site Content & Global
-               </TabsTrigger>
+               </TabsTrigger> */}
                <TabsTrigger 
                  value="properties" 
                  className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
                >
-                 <Home className="w-4 h-4" /> Properties
+                 <Home className="w-4 h-4" /> Manage Properties
                </TabsTrigger>
-               <TabsTrigger 
+               {/* <TabsTrigger 
                  value="blog" 
                  className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
                >
                  <FileText className="w-4 h-4" /> Blog Posts
-               </TabsTrigger>
+               </TabsTrigger> */}
                <TabsTrigger 
                  value="settings" 
                  className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
                >
-                 <UserCog className="w-4 h-4" /> Profile & Security
+                 <UserCog className="w-4 h-4" /> Settings
                </TabsTrigger>
             </TabsList>
           </div>
 
-          <TabsContent value="content" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
+          {/* <TabsContent value="content" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminContentManager />
-          </TabsContent>
+          </TabsContent> */}
 
           <TabsContent value="properties" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminPropertiesManager />
           </TabsContent>
           
-          <TabsContent value="blog" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
+          {/* <TabsContent value="blog" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminBlogManager />
-          </TabsContent>
+          </TabsContent> */}
 
           <TabsContent value="settings" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminSettings />
