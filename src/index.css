@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#F5F1ED] text-gray-900;
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-maroon {
+    color: #8B4545;
+  }
+  .bg-maroon {
+    background-color: #8B4545;
+  }
+  .border-maroon {
+    border-color: #8B4545;
+  }
+  .hover\:bg-maroon-dark:hover {
+    background-color: #6d3535;
+  }
+}
