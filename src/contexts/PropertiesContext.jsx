@@ -1,6 +1,7 @@
 
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { initialProperties } from '@/data/properties';
+import { getApiUrl, getApiHeaders } from '@/config/api';
 
 export const PropertiesContext = createContext();
 
@@ -10,11 +11,9 @@ export const PropertiesProvider = ({ children }) => {
 
   const fetchProperties = useCallback(async () => {
     try {
-      const response = await fetch('https://iq6wije0mf.execute-api.us-east-1.amazonaws.com/list-properties', {
+      const response = await fetch(getApiUrl('listProperties'), {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        headers: getApiHeaders()
       });
 
       if (!response.ok) {
