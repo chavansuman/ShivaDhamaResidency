@@ -232,11 +232,36 @@ const AdminPropertiesManager = () => {
 
         <Tabs defaultValue="basic" className="w-full">
           <TabsList className="mb-6 bg-gray-100 p-1 flex-wrap h-auto">
-            <TabsTrigger value="basic">Basic Info</TabsTrigger>
-            <TabsTrigger value="details">Details & Rent</TabsTrigger>
-            <TabsTrigger value="features">Features</TabsTrigger>
-            <TabsTrigger value="images">Images</TabsTrigger>
-            <TabsTrigger value="virtual-tour">Virtual Tour</TabsTrigger>
+            <TabsTrigger
+              value="basic"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+            >
+              Basic Info
+            </TabsTrigger>
+            <TabsTrigger
+              value="details"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+            >
+              Details & Rent
+            </TabsTrigger>
+            <TabsTrigger
+              value="features"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+            >
+              Features
+            </TabsTrigger>
+            <TabsTrigger
+              value="images"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+            >
+              Images
+            </TabsTrigger>
+            <TabsTrigger
+              value="virtual-tour"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+            >
+              Virtual Tour
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="basic" className="space-y-4">
