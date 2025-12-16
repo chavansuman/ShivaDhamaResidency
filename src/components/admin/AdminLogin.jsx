@@ -11,7 +11,7 @@ const AdminLogin = ({ onLoginSuccess }) => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const API_LOGIN_URL = "https://q4pt6uzb2zli6orjasy5b2xyfe0apolw.lambda-url.us-east-1.on.aws";
+  const API_LOGIN_URL = "https://gvlm27ucceco42nnxltvc3dyka0dnsha.lambda-url.us-east-1.on.aws";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
