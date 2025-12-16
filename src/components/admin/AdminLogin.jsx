@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,36 +11,44 @@ const AdminLogin = ({ onLoginSuccess }) => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Hardcoded credentials as requested (in a real app, these should be environment variables or DB backed)
-  // Hiding actual strings from plain sight slightly using basic obfuscation/constants if desired, 
-  // but for this request, direct comparison is most reliable.
-  const ADMIN_USER = "admin";
-  const ADMIN_PASS = "shiva@123";
+  const API_LOGIN_URL = "https://q4pt6uzb2zli6orjasy5b2xyfe0apolw.lambda-url.us-east-1.on.aws";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    // Simulate network delay for better UX
-    setTimeout(() => {
-      try {
-        if (username.trim() === ADMIN_USER && password === ADMIN_PASS) {
-          // Success
-          // Store a simple "session" marker in localStorage
-          localStorage.setItem('admin_authenticated', 'true');
-          localStorage.setItem('admin_login_time', Date.now().toString());
-          onLoginSuccess();
-        } else {
-          throw new Error('Invalid username or password.');
+    try {
+      const response = await fetch(API_LOGIN_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        let errorMessage = 'Login failed. Please try again.';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch (jsonError) {
+          // If response is not JSON, use generic message
         }
-      } catch (err) {
-        console.error('Login failed:', err);
-        setError('Incorrect username or password.');
-      } finally {
-        setIsLoading(false);
+        throw new Error(errorMessage);
       }
-    }, 800);
+
+      // Assuming a successful response means authentication is successful
+      localStorage.setItem('admin_authenticated', 'true');
+      localStorage.setItem('admin_login_time', Date.now().toString());
+      onLoginSuccess();
+
+    } catch (err) {
+      console.error('Login failed:', err);
+      setError(err.message || 'An unexpected error occurred.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
