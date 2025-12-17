@@ -47,7 +47,7 @@ const ContactCard = ({ property }) => {
           
           <Button
             onClick={handleWhatsApp}
-            className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors h-12"
+            className="w-full bg-[#00752c] hover:bg-[#049039] text-white transition-colors h-12"
           >
             <MessageCircle className="w-4 h-4 mr-2" />
             WhatsApp

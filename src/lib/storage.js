@@ -1,57 +1,52 @@
-
-import { supabase } from '@/lib/customSupabaseClient';
-
 /**
- * Uploads a file to Supabase Storage
+ * Uploads a file to a custom API that accepts base64-encoded images
  * @param {File} file - The file object to upload
- * @param {string} bucket - The bucket name (default: 'property-images')
+ * @param {string} apiUrl - The API endpoint to send the image to
  * @returns {Promise<string>} - The public URL of the uploaded file
  */
-export const uploadFile = async (file, bucket = 'property-images') => {
+export const uploadFile = async (file, apiUrl) => {
   try {
-    // 1. Create a unique file name
-    // Sanitize filename to remove special chars that might cause issues
-    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.]/g, '_');
-    const timestamp = Date.now();
-    const randomString = Math.random().toString(36).substring(2, 10);
-    const filePath = `${timestamp}-${randomString}-${sanitizedName}`;
+    // 1. Convert file to Base64
+    const base64Data = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // Remove the "data:<type>;base64," prefix
+        const base64String = reader.result.split(',')[1];
+        resolve(base64String);
+      };
+      reader.onerror = (error) => reject(error);
+    });
 
-    // 2. Upload the file
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .upload(filePath, file, {
-        cacheControl: '3600',
-        upsert: false
-      });
+    // 2. Create JSON payload
+    const payload = {
+      content: base64Data,
+      filename: file.name,
+      content_type: file.type,
+    };
 
-    if (error) {
-      console.error('Supabase storage upload error:', error);
-      
-      // Attempt to handle "Bucket not found" by creating it (if permissions allow)
-      if (error.message && error.message.includes('Bucket not found')) {
-        try {
-           await supabase.storage.createBucket(bucket, { public: true });
-           // Retry upload once
-           const { data: retryData, error: retryError } = await supabase.storage
-             .from(bucket)
-             .upload(filePath, file);
-             
-           if (retryError) throw retryError;
-        } catch (bucketError) {
-           console.error('Failed to create bucket or retry upload:', bucketError);
-           throw new Error('Storage bucket missing and could not be created. Please contact admin.');
-        }
-      } else {
-        throw error;
-      }
+    // 3. Send POST request using simple fetch
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API request failed: ${errorText}`);
     }
 
-    // 3. Get Public URL
-    const { data: { publicUrl } } = supabase.storage
-      .from(bucket)
-      .getPublicUrl(filePath);
+    const data = await response.json();
 
-    return publicUrl;
+    if (!data.uploaded_image || !data.uploaded_image.url) {
+      throw new Error('API response does not contain uploaded image URL');
+    }
+
+    // 4. Return the uploaded image URL
+    return data.uploaded_image.url;
   } catch (error) {
     console.error('Error uploading file:', error);
     throw new Error(error.message || 'Failed to upload image. Please try again.');

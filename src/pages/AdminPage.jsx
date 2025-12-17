@@ -10,6 +10,7 @@ import AdminContentManager from '@/components/admin/AdminContentManager';
 import AdminPropertiesManager from '@/components/admin/AdminPropertiesManager';
 import AdminBlogManager from '@/components/admin/AdminBlogManager';
 import AdminSettings from '@/components/admin/AdminSettings';
+import AdminImageManager from '@/components/admin/AdminImageManager';
 import AdminLogin from '@/components/admin/AdminLogin';
 import { useToast } from '@/components/ui/use-toast';
 import { useSiteSettings } from '@/contexts/SiteSettingsContext';
@@ -93,9 +94,9 @@ const AdminPage = () => {
             <p className="text-gray-500 mt-1 text-sm">Manage your properties</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center hidden md:flex">
+            <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center hidden md:flex " style={{ display: 'none' }}>
                <Settings className="w-4 h-4 mr-2" />
-               Admin Mode Active
+               Logged in as Admin
             </div>
             
             {/* Save Button - Only shown for 'content' tab where context saving is needed */}
@@ -142,13 +143,22 @@ const AdminPage = () => {
                  value="blog" 
                  className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl"
                >
-                 <FileText className="w-4 h-4" /> Blog Posts
+                 <FileText className="w-4 h-4" /> Manage Blog Posts
                </TabsTrigger> }
                <TabsTrigger 
                  value="settings" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl"
+                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl hidden"
                >
                  <UserCog className="w-4 h-4" /> Settings
+               </TabsTrigger>
+
+
+               <TabsTrigger 
+                 value="image-manager" 
+                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl"
+                 style={{ display: 'none' }}
+               >
+                 <UserCog className="w-4 h-4" /> Image Manager
                </TabsTrigger>
             </TabsList>
           </div>
@@ -167,6 +177,16 @@ const AdminPage = () => {
 
           <TabsContent value="settings" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminSettings />
+          </TabsContent>
+
+          <TabsContent value="image-manager" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <AdminImageManager images={[
+              { id: 100, alt: 'Mountain view', caption: 'Beautiful mountains', url: 'https://picsum.photos/seed/100/200' },
+              { id: 200, alt: 'Beach', caption: 'Sunny beach', url: 'https://picsum.photos/seed/200/200' },
+              { id: 300, alt: 'Forest', caption: 'Green forest', url: 'https://picsum.photos/seed/300/200' },
+              { id: 400, alt: 'City', caption: 'Modern city', url: 'https://picsum.photos/seed/400/200' },
+              { id: 500, alt: 'Desert', caption: 'Sandy desert', url: 'https://picsum.photos/seed/500/200' },
+            ]} isOpen={true} onClose={() => {}} />
           </TabsContent>
         </Tabs>
       </main>

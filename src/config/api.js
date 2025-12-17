@@ -11,6 +11,7 @@ const API_CONFIG = {
             login: '/login',
             listProperties: '/list-properties',
             updateProperty: '/update-property',
+            uploadImage: '/upload-image',
             // deleteProperty: '/delete-property',
             // addProperty: '/add-property',
         }

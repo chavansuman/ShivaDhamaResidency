@@ -221,44 +221,56 @@ const AdminPropertiesManager = () => {
       <div className="bg-white p-6 rounded-lg shadow-sm animate-in slide-in-from-right-4 duration-300">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">{isAddingNew ? 'Add New Property' : 'Edit Property'}</h2>
-          <div className="space-x-2">
-            <Button variant="outline" onClick={() => setEditingProperty(null)} disabled={isSaving}>Cancel</Button>
-            <Button onClick={handleSave} className="bg-maroon hover:bg-maroon-dark" disabled={isSaving} style={{ color: "white" }}>
-              <Save className="w-4 h-2 mr-2" style={{ color: "white" }} /> 
-              {isSaving ? 'Saving...' : 'Save Changes'}
-            </Button>
-          </div>
+          <div className="flex space-x-2">
+  <Button
+    variant="outline"
+    onClick={() => setEditingProperty(null)}
+    disabled={isSaving}
+    className="flex items-center"
+  >
+    Cancel
+  </Button>
+
+  <Button
+    onClick={handleSave}
+    disabled={isSaving}
+    className="flex items-center bg-maroon hover:bg-maroon-dark text-white"
+  >
+    <Save className="w-4 h-4 mr-2" />
+    {isSaving ? 'Saving...' : 'Save Changes'}
+  </Button>
+</div>
         </div>
 
-        <Tabs defaultValue="basic" className="w-full">
-          <TabsList className="mb-6 bg-gray-100 p-1 flex-wrap h-auto">
+        <Tabs defaultValue="basic" className="w-full rounded-xl">
+          <TabsList className="mb-6 bg-gray-100 p-1 flex-wrap h-auto rounded-xl">
             <TabsTrigger
               value="basic"
-              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm rounded-xl"
             >
               Basic Info
             </TabsTrigger>
             <TabsTrigger
               value="details"
-              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm rounded-xl"
             >
               Details & Rent
             </TabsTrigger>
             <TabsTrigger
               value="features"
-              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm rounded-xl"
             >
               Features
             </TabsTrigger>
             <TabsTrigger
               value="images"
-              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm rounded-xl"
             >
               Images
             </TabsTrigger>
             <TabsTrigger
               value="virtual-tour"
-              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm"
+              className="px-4 py-2 rounded-md transition-colors data-[state=active]:bg-white data-[state=active]:text-maroon data-[state=active]:shadow-sm rounded-xl"
             >
               Virtual Tour
             </TabsTrigger>
@@ -547,7 +559,7 @@ const AdminPropertiesManager = () => {
           
           <TabsContent value="virtual-tour">
              <div className="space-y-6">
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                     <Label>External Virtual Tour URL</Label>
                     <Input 
                         placeholder="https://matterport.com/..." 
@@ -560,7 +572,7 @@ const AdminPropertiesManager = () => {
                         }}
                     />
                     <p className="text-xs text-gray-500">Paste a link to an external virtual tour (Matterport, etc.)</p>
-                </div>
+                </div> */}
 
                <div className="p-4 border rounded bg-gray-50">
                  <h3 className="font-semibold mb-2">Internal Virtual Tour Rooms</h3>
@@ -642,9 +654,9 @@ const AdminPropertiesManager = () => {
             ref={fileImportRef} 
             onChange={handleImportFile} 
             accept=".json" 
-            className="hidden" 
+            className="hidden"
           />
-          <Button variant="outline" onClick={handleImportClick} className="flex-1 sm:flex-none border-gray-300">
+          <Button variant="outline" onClick={handleImportClick} className="flex-1 sm:flex-none border-gray-300" style={{ display: 'none' }}>
              <Upload className="w-4 h-4 mr-2" /> Import
           </Button>
           <Button variant="outline" onClick={handleExport} className="flex-1 sm:flex-none border-gray-300">

@@ -94,6 +94,9 @@ const PropertyDetailPage = () => {
             size="sm" 
             onClick={handleShortlist}
             className="flex items-center border-maroon text-maroon hover:bg-maroon hover:text-white"
+            style={{
+              display: 'none'
+            }}
           >
             <Heart className="w-4 h-4 mr-2" />
             Shortlist
@@ -134,7 +137,7 @@ const PropertyDetailPage = () => {
                 <div className="flex flex-col items-end gap-2">
                   <div className={cn(
                     "inline-flex items-center px-4 py-2 rounded-full text-sm font-bold border w-fit h-fit",
-                    isAvailable ? "bg-green-50 text-green-700 border-green-200" : "bg-red-50 text-red-700 border-red-200"
+                    isAvailable ? "bg-green-50 text-green-700 border-green-200" : "bg-red-50 text-red-700 border-red-200 hidden"
                   )}>
                     {isAvailable ? <CheckCircle2 className="w-4 h-4 mr-2" /> : <Ban className="w-4 h-4 mr-2" />}
                     Status: {property.status}
@@ -145,7 +148,7 @@ const PropertyDetailPage = () => {
                       </div>
                     ) : (
                       availableDate && (
-                        <div className="text-sm font-medium text-maroon flex items-center bg-maroon/5 px-3 py-1 rounded-full">
+                        <div className="text-sm font-medium text-maroon flex items-center bg-maroon/5 px-3 py-1 rounded-full hidden">
                           <Calendar className="w-3.5 h-3.5 mr-2" />
                           Available from: {availableDate}
                         </div>
@@ -347,30 +350,25 @@ const PropertyDetailPage = () => {
                   <Compass className="w-6 h-6 text-maroon" /> 
                   Virtual Tour
                 </h2>
-                <p className="text-gray-600 mb-4">Explore {property.title} room by room with our immersive 360-like view.</p>
-                {/* {property.virtualTour ? (
-                  <VirtualTour tourData={property.virtualTour} />
-                ) : property.virtualTourImage ? (
-                  <div className="rounded-lg overflow-hidden relative group">
-                    <img 
-                      alt="Virtual Tour 360 View" 
-                      className="w-full h-auto object-cover" 
-                      src={property.virtualTourImage} 
-                    />
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                        <span className="bg-white/90 text-maroon px-4 py-2 rounded-full font-bold shadow-lg">360° View</span>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-gray-500 italic">No virtual tour available.</p>
-                )} */}
-              <PanoramaViewer
-                image="https://cdn-ilblmij.nitrocdn.com/DLIZsQDvOcOKWcuSosUGkNHekDNKXxlQ/assets/images/optimized/rev-8feb66c/threesixty.tours/wp-content/uploads/2024/10/traditionalimage_upload-170913_1505326171212-scaled.jpg"
-                height="500px"
-                autoLoad={true}
-                showZoomCtrl={true}
-                showFullscreenCtrl={true}
-              />
+                <p className="text-gray-600 mb-4">Explore {property.title} with our immersive 360° virtual tour. Drag to look around, and scroll or pinch to zoom.</p>
+              
+              <div className="flex flex-col gap-4" style={{ marginTop: '40px' }}></div>
+
+              {property.virtualTour.rooms.map((room, index) => (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{room.name}</h3>
+                  <p className="text-gray-600 mb-4">{room.description}</p>
+                <PanoramaViewer
+                  key={index}
+                  image={room.image}
+                  height="500px"
+                  autoLoad={true}
+                  showZoomCtrl={true}
+                  showFullscreenCtrl={true}
+                />
+                </div>
+              ))}
+
               </div>
             </motion.div>
           </div>
@@ -381,10 +379,10 @@ const PropertyDetailPage = () => {
                <ContactCard property={property} />
             ) : (
               <div className="bg-red-50 border border-red-200 rounded-lg p-6 shadow-sm sticky top-24">
-                 <h3 className="text-xl font-bold text-red-700 mb-2 flex items-center">
-                   <Ban className="w-6 h-6 mr-2" /> This Unit is Occupied
+                 <h3 className="text-lg font-bold text-red-700 mb-2 flex items-center">
+                   <Ban className="w-6 h-6 mr-2" /> Sorry! This unit is {property.status === 'Occupied' ? 'occupied' : 'under maintenance'}
                  </h3>
-                 <p className="text-gray-700 mb-4">
+                 <p className="text-gray-700 mb-4" style={{ display: 'none' }}>
                    This property is currently occupied.
                  </p>
                  {availableDate && (
@@ -394,7 +392,7 @@ const PropertyDetailPage = () => {
                     </div>
                  )}
                  <Link to="/">
-                    <Button className="w-full bg-red-600 hover:bg-red-700">
+                    <Button className="w-full bg-maroon hover:bg-red-700" style={{ color: 'white' }}>
                       View Other Available Units
                     </Button>
                  </Link>

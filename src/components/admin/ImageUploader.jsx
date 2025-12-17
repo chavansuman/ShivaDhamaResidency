@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Upload, X, Image as ImageIcon, Trash2, Loader2, Plus, Link as LinkIcon } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { uploadFile } from '@/lib/storage';
+import { getApiUrl, getApiHeaders } from '@/config/api';
 
 const ImageUploader = ({ images = [], onImagesChange, label = "Add Images", multiple = true }) => {
   const fileInputRef = useRef(null);
@@ -78,7 +79,7 @@ const ImageUploader = ({ images = [], onImagesChange, label = "Add Images", mult
         }
         
         try {
-          const publicUrl = await uploadFile(file);
+          const publicUrl = await uploadFile(file, getApiUrl('uploadImage'));
           if (publicUrl) {
               newUrls.push(publicUrl);
           }
@@ -124,7 +125,7 @@ const ImageUploader = ({ images = [], onImagesChange, label = "Add Images", mult
 
   return (
     <div className="space-y-4">
-      {label && <Label>{label}</Label>}
+      {label && <Label style={{ display: 'none' }}>{label}</Label>}
       
       {/* Upload Controls */}
       <div >
