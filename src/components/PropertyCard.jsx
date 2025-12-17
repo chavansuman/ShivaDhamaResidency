@@ -65,16 +65,25 @@ const PropertyCard = ({ property }) => {
           </div>
         </div>
 
-        {formattedDate && (
-          <div className="mb-4 flex items-center text-xs text-maroon font-medium bg-maroon/5 p-2 rounded">
-             <Calendar className="w-3 h-3 mr-2" />
-             Available from: {formattedDate}
+        
+        {property.status === 'Available' ? (
+          <div className="mb-4 flex items-center text-xs text-green-600 font-medium bg-maroon/5 p-2 rounded">
+            Available now. Contact us to book this unit.
           </div>
-        )}
+        ) : (
+          formattedDate && (
+            <div className="mb-4 flex items-center text-xs text-maroon font-medium bg-maroon/5 p-2 rounded">
+              <Calendar className="w-3 h-3 mr-2" />
+              Available from: {formattedDate}
+            </div>
+          )
+        )}      
         
         <div className="mt-auto">
           <Link to={`/property/${property.id}`} className="w-full block">
-            <Button className="w-full bg-maroon hover:bg-maroon-dark">
+            <Button className="w-full bg-maroon hover:bg-maroon-dark" style={{
+              color: "white",
+            }}>
               View Details
             </Button>
           </Link>

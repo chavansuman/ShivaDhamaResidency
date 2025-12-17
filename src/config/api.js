@@ -10,8 +10,7 @@ const API_CONFIG = {
         endpoints: {
             login: '/login',
             listProperties: '/list-properties',
-            // Add more endpoints here as needed
-            // updateProperty: '/update-property',
+            updateProperty: '/update-property',
             // deleteProperty: '/delete-property',
             // addProperty: '/add-property',
         }

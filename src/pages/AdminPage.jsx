@@ -89,8 +89,8 @@ const AdminPage = () => {
       <main className="flex-grow container mx-auto px-4 py-12 relative">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-500 mt-1">Manage your properties</p>
+            <h6 className="text-lg font-semibold text-gray-900">Admin Dashboard</h6>
+            <p className="text-gray-500 mt-1 text-sm">Manage your properties</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center hidden md:flex">
@@ -134,19 +134,19 @@ const AdminPage = () => {
                </TabsTrigger> */}
                <TabsTrigger 
                  value="properties" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl"
                >
                  <Home className="w-4 h-4" /> Manage Properties
                </TabsTrigger>
-               {/* <TabsTrigger 
+               {<TabsTrigger 
                  value="blog" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl"
                >
                  <FileText className="w-4 h-4" /> Blog Posts
-               </TabsTrigger> */}
+               </TabsTrigger> }
                <TabsTrigger 
                  value="settings" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2 rounded-xl"
                >
                  <UserCog className="w-4 h-4" /> Settings
                </TabsTrigger>
@@ -161,9 +161,9 @@ const AdminPage = () => {
             <AdminPropertiesManager />
           </TabsContent>
           
-          {/* <TabsContent value="blog" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
+          {<TabsContent value="blog" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminBlogManager />
-          </TabsContent> */}
+          </TabsContent>}
 
           <TabsContent value="settings" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminSettings />

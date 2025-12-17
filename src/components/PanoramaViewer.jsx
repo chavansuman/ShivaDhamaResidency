@@ -37,7 +37,7 @@ const PanoramaViewer = ({
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1rem', marginTop: '3rem', textAlign: 'center' }}>Virtual Tour</h2>
+      {/* <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1rem', marginTop: '3rem', textAlign: 'center' }}>Virtual Tour</h2> */}
       <div
         ref={containerRef}
         style={{

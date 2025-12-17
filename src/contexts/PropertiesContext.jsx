@@ -5,6 +5,25 @@ import { getApiUrl, getApiHeaders } from '@/config/api';
 
 export const PropertiesContext = createContext();
 
+function floatsToStrings(value) {
+  if (Array.isArray(value)) {
+    return value.map(floatsToStrings);
+  }
+
+  if (value !== null && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([k, v]) => [k, floatsToStrings(v)])
+    );
+  }
+
+  if (typeof value === "number" && !Number.isInteger(value)) {
+    return value.toString();
+  }
+
+  return value;
+}
+
+
 export const PropertiesProvider = ({ children }) => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,11 +67,33 @@ export const PropertiesProvider = ({ children }) => {
   }, [fetchProperties]);
 
   const updateProperty = async (updatedProperty) => {
-    // Update local state only (no API call for now)
+    // Optimistic update of local state
     setProperties(prev => prev.map(p => p.id === updatedProperty.id ? updatedProperty : p));
 
-    // TODO: If you have an API endpoint for updating properties, call it here
-    console.log('Property updated locally:', updatedProperty);
+    try {
+      const { id: property_id, ...property_details } = updatedProperty;
+      const response = await fetch(getApiUrl('updateProperty'), {
+        method: 'POST',
+        headers: {
+          ...getApiHeaders(), // Include existing API headers (e.g., Authorization)
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ property_id, property_details: floatsToStrings(property_details) })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      console.log('Property updated successfully via API:', updatedProperty);
+      // Optionally, if the API returns the updated property, you might want to re-sync state here
+      // const result = await response.json();
+      // setProperties(prev => prev.map(p => p.id === result.id ? result : p));
+    } catch (error) {
+      console.error("Error updating property via API:", error);
+      // TODO: Implement rollback of local state if API update fails
+      // setProperties(prev => prev.map(p => p.id === updatedProperty.id ? previousVersionOfProperty : p));
+    }
   };
 
   const addProperty = async (newProperty) => {

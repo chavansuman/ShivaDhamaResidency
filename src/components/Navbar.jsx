@@ -13,7 +13,7 @@ const Navbar = () => {
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/location', label: 'Location', icon: MapPin },
-    // { path: '/blog', label: 'Blog', icon: BookOpen },
+    { path: '/blog', label: 'Blog', icon: BookOpen },
     { path: '/about', label: 'About', icon: Info },
     { path: '/contact', label: 'Contact', icon: Phone },
     { path: '/admin', label: 'Admin', icon: Lock }

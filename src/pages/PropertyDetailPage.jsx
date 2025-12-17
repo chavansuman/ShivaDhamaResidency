@@ -139,12 +139,18 @@ const PropertyDetailPage = () => {
                     {isAvailable ? <CheckCircle2 className="w-4 h-4 mr-2" /> : <Ban className="w-4 h-4 mr-2" />}
                     Status: {property.status}
                   </div>
-                  {availableDate && (
-                    <div className="text-sm font-medium text-maroon flex items-center bg-maroon/5 px-3 py-1 rounded-full">
-                      <Calendar className="w-3.5 h-3.5 mr-2" />
-                      Available from: {availableDate}
-                    </div>
-                  )}
+                  {isAvailable ? (
+                      <div className="text-sm font-medium text-green-600 flex items-center bg-maroon/5 px-3 py-1 rounded-full" >
+                        Available now. Contact us to book this unit.
+                      </div>
+                    ) : (
+                      availableDate && (
+                        <div className="text-sm font-medium text-maroon flex items-center bg-maroon/5 px-3 py-1 rounded-full">
+                          <Calendar className="w-3.5 h-3.5 mr-2" />
+                          Available from: {availableDate}
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
 
@@ -156,17 +162,21 @@ const PropertyDetailPage = () => {
               )}
               
               <ImageGallery images={property.images} />
+              <div className="flex justify-center mt-6">
+                <Button
+                  variant="outline"
+                  className="text-maroon hover:text-white hover:bg-maroon border-maroon"
+                  onClick={() => {
+                    document.getElementById('virtual-tour')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  <Compass className="w-4 h-4 mr-2" />
+                  Take Virtual Tour
+                </Button>
+              </div>
 
-              <PanoramaViewer
-                image="https://cdn-ilblmij.nitrocdn.com/DLIZsQDvOcOKWcuSosUGkNHekDNKXxlQ/assets/images/optimized/rev-8feb66c/threesixty.tours/wp-content/uploads/2024/10/traditionalimage_upload-170913_1505326171212-scaled.jpg"
-                height="500px"
-                autoLoad={true}
-                showZoomCtrl={true}
-                showFullscreenCtrl={true}
-              />
-              
               <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Rent & Area Details</h2>
+                <h6 className="text-xl font-bold text-gray-900 mb-4">Rent & Area Details</h6>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                   <div>
                     <p className="text-gray-600 mb-1">Monthly Rent</p>
@@ -316,7 +326,7 @@ const PropertyDetailPage = () => {
                       {property.roomAreas.map((room, index) => (
                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                           <td className="py-3 px-4">{room.room}</td>
-                          <td className="text-right py-3 px-4">{room.area.toFixed(2)}</td>
+                          <td className="text-right py-3 px-4">{room.area}</td>
                         </tr>
                       ))}
                       <tr className="bg-gray-50 font-semibold text-gray-900">
@@ -338,7 +348,7 @@ const PropertyDetailPage = () => {
                   Virtual Tour
                 </h2>
                 <p className="text-gray-600 mb-4">Explore {property.title} room by room with our immersive 360-like view.</p>
-                {property.virtualTour ? (
+                {/* {property.virtualTour ? (
                   <VirtualTour tourData={property.virtualTour} />
                 ) : property.virtualTourImage ? (
                   <div className="rounded-lg overflow-hidden relative group">
@@ -353,7 +363,14 @@ const PropertyDetailPage = () => {
                   </div>
                 ) : (
                   <p className="text-gray-500 italic">No virtual tour available.</p>
-                )}
+                )} */}
+              <PanoramaViewer
+                image="https://cdn-ilblmij.nitrocdn.com/DLIZsQDvOcOKWcuSosUGkNHekDNKXxlQ/assets/images/optimized/rev-8feb66c/threesixty.tours/wp-content/uploads/2024/10/traditionalimage_upload-170913_1505326171212-scaled.jpg"
+                height="500px"
+                autoLoad={true}
+                showZoomCtrl={true}
+                showFullscreenCtrl={true}
+              />
               </div>
             </motion.div>
           </div>
