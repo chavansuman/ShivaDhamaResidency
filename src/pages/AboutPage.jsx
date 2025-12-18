@@ -15,7 +15,7 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>{content.about?.title} | Shivadhama Residency Mysuru</title>
+        <title>{content.about?.altTitle} | Shivadhama Residency Mysuru</title>
         <meta name="description" content="Learn about Shivadhama Residency's mission to provide premium, broker-free living in Jayalakshmipuram, Mysuru. Family-run, tenant-focused, and quality-driven." />
       </Helmet>
       
@@ -28,7 +28,7 @@ const AboutPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto text-center mb-12"
           >
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{content.about?.title}</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">{content.about?.altTitle}</h1>
             <p className="text-xl text-gray-600 mb-6">
               {content.about?.subtitle}
             </p>

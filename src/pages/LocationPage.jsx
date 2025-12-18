@@ -11,7 +11,7 @@ import { useSiteContent } from '@/lib/useSiteContent';
 const LocationPage = () => {
   const { images } = usePageImages();
   const { content } = useSiteContent();
-  
+
   const amenities = [
     {
       category: "Shopping & Essentials",
@@ -65,27 +65,27 @@ const LocationPage = () => {
     <>
       <Helmet>
         <title>No Broker Rental Homes Near Me Mysuru | Shivadhama Residency</title>
-        <meta name="description" content="Looking for broker-free rental homes near me in Mysuru? Shiva Dhama Residency offers direct owner rentals in Jayalakshmipuram. 1BHK, 2BHK, 3BHK houses with zero brokerage. Near University & IT hubs." />
+        <meta name="description" content="Looking for broker-free rental homes near me in Mysuru? Shivadhama Residency offers direct owner rentals in Jayalakshmipuram. 1BHK, 2BHK, 3BHK houses with zero brokerage. Near University & IT hubs." />
         <meta name="keywords" content="no broker houses in mysore, rental homes near me, broker free house for rent in mysore, house for rent in jayalakshmipuram mysore, direct owner rental mysore, 2bhk for rent in mysore without broker" />
       </Helmet>
-      
+
       <Navbar />
-      
+
       <div className="bg-white">
         {/* Hero Section - Fixed Contrast */}
         <div className="relative h-[450px] flex items-center justify-center bg-black overflow-hidden">
           <div className="absolute inset-0 z-0">
-             <img 
-               src={images.location?.heroImage}
-               alt="Aerial view of Mysuru city greenery" 
-               className="w-full h-full object-cover opacity-50" 
-             />
-             {/* Gradient overlay for text readability */}
-             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
+            <img
+              src={images.location?.heroImage}
+              alt="Aerial view of Mysuru city greenery"
+              className="w-full h-full object-cover opacity-50"
+            />
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
           </div>
-          
+
           <div className="relative z-10 text-center px-4 max-w-4xl pt-10">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -93,7 +93,7 @@ const LocationPage = () => {
             >
               {content.location?.title}
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -125,23 +125,23 @@ const LocationPage = () => {
               transition={{ duration: 0.6 }}
               className="rounded-xl overflow-hidden shadow-2xl border-4 border-white"
             >
-               <div className="relative h-[400px] bg-gray-100">
-                 <img 
-                   src={images.location?.mapImage}
-                   alt="Map of Jayalakshmipuram area showing rental homes location" 
-                   className="w-full h-full object-cover" 
-                 />
-                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 p-4 rounded-lg shadow-lg backdrop-blur-sm">
-                   <div className="flex items-start">
-                     <MapPin className="w-6 h-6 text-maroon mt-1 mr-3 flex-shrink-0" />
-                     <div>
-                       <h3 className="font-bold text-gray-900">{content.global?.siteName}</h3>
-                       <p className="text-sm text-gray-600">{content.global?.address}</p>
-                       <p className="text-xs text-maroon font-bold mt-1">Prime Rental Location</p>
-                     </div>
-                   </div>
-                 </div>
-               </div>
+              <div className="relative h-[400px] bg-gray-100">
+                <img
+                  src={images.location?.mapImage}
+                  alt="Map of Jayalakshmipuram area showing rental homes location"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 p-4 rounded-lg shadow-lg backdrop-blur-sm">
+                  <div className="flex items-start">
+                    <MapPin className="w-6 h-6 text-maroon mt-1 mr-3 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-gray-900">{content.global?.siteName}</h3>
+                      <p className="text-sm text-gray-600">{content.global?.address}</p>
+                      <p className="text-xs text-maroon font-bold mt-1">Prime Rental Location</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -170,7 +170,7 @@ const LocationPage = () => {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">{section.category}</h3>
                   </div>
-                  
+
                   <div className="space-y-4">
                     {section.items.map((item, itemIdx) => (
                       <div key={itemIdx} className="flex justify-between items-start border-b border-gray-100 last:border-0 pb-3 last:pb-0">
@@ -196,7 +196,7 @@ const LocationPage = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{content.location?.attractionsTitle || "Famous Attractions"}</h2>
             <p className="text-gray-600">{content.location?.attractionsDesc || "Explore the heritage of the Royal City from your central location."}</p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {attractions.map((place, idx) => (
               <motion.div
@@ -207,9 +207,9 @@ const LocationPage = () => {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="group relative overflow-hidden rounded-xl shadow-lg h-64"
               >
-                <img 
+                <img
                   src={place.image}
-                  alt={place.alt || place.name} 
+                  alt={place.alt || place.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6">
@@ -221,7 +221,7 @@ const LocationPage = () => {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </>
   );

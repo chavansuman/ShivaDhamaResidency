@@ -19,7 +19,7 @@ const API_CONFIG = {
 
     // Default headers for API requests
     headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
     },
 
     // Request timeout in milliseconds

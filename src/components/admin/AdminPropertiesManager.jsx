@@ -721,7 +721,7 @@ const AdminPropertiesManager = () => {
       </div>
 
       <AlertDialog open={deleteConfirmation.isOpen} onOpenChange={(isOpen) => !isOpen && setDeleteConfirmation({ isOpen: false, propertyId: null, propertyTitle: '' })}>
-        <AlertDialogContent>
+        <AlertDialogContent className="bg-white opacity-100">
           <AlertDialogHeader>
             <AlertDialogTitle className="flex items-center text-red-600">
                 <AlertCircle className="w-5 h-5 mr-2" />
