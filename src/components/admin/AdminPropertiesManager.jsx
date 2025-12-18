@@ -662,7 +662,7 @@ const AdminPropertiesManager = () => {
           <Button variant="outline" onClick={handleExport} className="flex-1 sm:flex-none border-gray-300">
              <Download className="w-4 h-4 mr-2" /> Export
           </Button>
-          <Button onClick={handleAddNew} className="flex-1 sm:flex-none bg-maroon hover:bg-maroon-dark" style={{ color: 'white' }}>
+          <Button onClick={handleAddNew} className="flex-1 sm:flex-none bg-maroon hover:bg-maroon-dark" style={{ color: 'white' , display: 'none'}}>
             <Plus className="w-4 h-4 mr-2" /> Add
           </Button>
         </div>
@@ -709,7 +709,7 @@ const AdminPropertiesManager = () => {
                     <Button variant="ghost" size="icon" onClick={() => handleEdit(property)}>
                       <Edit className="w-4 h-4 text-gray-600" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => handleDeleteClick(property)}>
+                    <Button variant="ghost" size="icon" onClick={() => handleDeleteClick(property)} className="hidden">
                       <Trash2 className="w-4 h-4 text-red-500" />
                     </Button>
                   </div>
