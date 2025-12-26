@@ -528,7 +528,7 @@ const AdminPropertiesManager = () => {
           
           <TabsContent value="virtual-tour">
              <div className="space-y-6">
-                <div className="space-y-2">
+                <div className="space-y-2" style={{ display: 'none' }}>
                     <Label>External Virtual Tour URL</Label>
                     <Input 
                         placeholder="https://matterport.com/..." 

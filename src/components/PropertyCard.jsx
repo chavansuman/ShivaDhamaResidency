@@ -74,7 +74,7 @@ const PropertyCard = ({ property }) => {
         
         <div className="mt-auto">
           <Link to={`/property/${property.id}`} className="w-full block">
-            <Button className="w-full bg-maroon hover:bg-maroon-dark">
+            <Button className="w-full bg-maroon hover:bg-maroon-dark text-white">
               View Details
             </Button>
           </Link>
