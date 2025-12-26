@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { useProperties } from '@/lib/useProperties';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
+import PanoramaViewer from '@/components/PanoramaViewer';
 
 const PropertyDetailPage = () => {
   const { id } = useParams();
@@ -328,24 +329,23 @@ const PropertyDetailPage = () => {
                   <Compass className="w-6 h-6 text-maroon" /> 
                   Virtual Tour
                 </h2>
-                <p className="text-gray-600 mb-4">Explore {property.title} room by room with our immersive 360-like view.</p>
-                {property.virtualTour ? (
-                  <VirtualTour tourData={property.virtualTour} />
-                ) : property.virtualTourImage ? (
-                  <div className="rounded-lg overflow-hidden relative group">
-                    <img 
-                      alt="Virtual Tour 360 View" 
-                      className="w-full h-auto object-cover" 
-                      src={property.virtualTourImage} 
-                    />
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                        <span className="bg-white/90 text-maroon px-4 py-2 rounded-full font-bold shadow-lg">360° View</span>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-gray-500 italic">No virtual tour available.</p>
-                )}
+                <p className="text-gray-600 mb-4">Explore {property.title} with our immersive 360° virtual tour. Drag to look around, and scroll or pinch to zoom.</p>
+                {property.virtualTour.rooms.map((room, index) => (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{room.name}</h3>
+                  <p className="text-gray-600 mb-4">{room.description}</p>
+                <PanoramaViewer
+                  key={index}
+                  image={room.image}
+                  height="500px"
+                  autoLoad={true}
+                  showZoomCtrl={true}
+                  showFullscreenCtrl={true}
+                />
+                </div>
+              ))}
               </div>
+              
             </motion.div>
           </div>
           
