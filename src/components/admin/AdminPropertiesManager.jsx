@@ -219,11 +219,17 @@ const AdminPropertiesManager = () => {
   if (editingProperty) {
     return (
       <div className="bg-white p-6 rounded-lg shadow-sm animate-in slide-in-from-right-4 duration-300">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <h2 className="text-xl font-bold">{isAddingNew ? 'Add New Property' : 'Edit Property'}</h2>
-          <div className="space-x-2">
-            <Button variant="outline" onClick={() => setEditingProperty(null)} disabled={isSaving}>Cancel</Button>
-            <Button onClick={handleSave} className="bg-maroon hover:bg-maroon-dark" disabled={isSaving}>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" onClick={() => setEditingProperty(null)} disabled={isSaving}>
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleSave} 
+              className="bg-maroon hover:bg-maroon-dark flex items-center text-white" 
+              disabled={isSaving}
+            >
               <Save className="w-4 h-4 mr-2" /> 
               {isSaving ? 'Saving...' : 'Save Changes'}
             </Button>
@@ -621,7 +627,7 @@ const AdminPropertiesManager = () => {
           <Button variant="outline" onClick={handleExport} className="flex-1 sm:flex-none border-gray-300">
              <Download className="w-4 h-4 mr-2" /> Export
           </Button>
-          <Button onClick={handleAddNew} className="flex-1 sm:flex-none bg-maroon hover:bg-maroon-dark">
+          <Button onClick={handleAddNew} className="flex-1 sm:flex-none bg-maroon hover:bg-maroon-dark text-white">
             <Plus className="w-4 h-4 mr-2" /> Add
           </Button>
         </div>

@@ -5,7 +5,7 @@ export const initialSiteContent = {
     contactPhone: "+91 98860 00624",
     contactEmail: "shivadhamamysuru@gmail.com",
     address: "Shivadhama Residency, 53, 2nd Cross Road, 4th Block, Jayalakshmipuram, Mysuru, Karnataka 570012",
-    googleMapsUrl: "https://www.google.com/maps/dir//Shivadhama+Residency,+53,+2nd+Cross+Road,+4th+Block,+Jayalakshmipuram,+Mysuru,+Karnataka+570012/@12.3225958,76.6272425,17z/data=!4m16!1m7!3m6!1s0x3baf7a9033cfe2c9:0x5f95e6a0b830538b!2sShivadhama+Residency!8m2!3d12.3225958!4d76.6272425!16s%2Fg%2F11f_b_0qf1!4m7!1m0!1m5!1m1!1s0x3baf7a9033cfe2c9:0x5f95e6a0b830538b!2m2!1d76.6271845!2d12.3226516?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D",
+    googleMapsUrl: "https://www.google.com/maps/dir/Shivadhama+Residency,+53,+2nd+Cross+Road,+4th+Block,+Jayalakshmipuram,+Mysuru,+Karnataka+570012/@12.3225958,76.6272425,17z/data=!4m16!1m7!3m6!1s0x3baf7a9033cfe2c9:0x5f95e6a0b830538b!2sShivadhama+Residency!8m2!3d12.3225958!4d76.6272425!16s%2Fg%2F11f_b_0qf1!4m7!1m0!1m5!1m1!1s0x3baf7a9033cfe2c9:0x5f95e6a0b830538b!2m2!1d76.6271845!2d12.3226516?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D",
     footerAbout: "Your trusted partner for broker-free rental homes in Mysuru. We offer premium apartments with modern amenities in the heart of Jayalakshmipuram."
   },
   home: {
@@ -58,7 +58,12 @@ export const initialSiteContent = {
     ]
   },
   pages: {
-    home: [],
+    home: [
+      { id: 'hero', component: 'HeroSection' },
+      { id: 'properties', component: 'PropertiesSection' },
+      { id: 'why-love', component: 'WhyTenantsLove' },
+      { id: 'map', component: 'MapSection' }
+    ],
     about: [],
     location: [],
     contact: [],

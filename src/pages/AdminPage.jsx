@@ -13,45 +13,42 @@ import AdminSettings from '@/components/admin/AdminSettings';
 import AdminLogin from '@/components/admin/AdminLogin';
 import { useToast } from '@/components/ui/use-toast';
 import { useSiteSettings } from '@/contexts/SiteSettingsContext';
+import { supabase } from '@/lib/customSupabaseClient';
 
 const AdminPage = () => {
   const [mainTab, setMainTab] = useState('content');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
-  
+
   // Use context for saving content
   const { saveAllSettings, isSaving, hasUnsavedChanges } = useSiteSettings();
   const { toast } = useToast();
 
   useEffect(() => {
-    checkLocalAuth();
+    // Check active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAuthenticated(!!session);
+      setCheckingAuth(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const checkLocalAuth = () => {
-    const auth = localStorage.getItem('admin_authenticated');
-    const loginTime = localStorage.getItem('admin_login_time');
-    
-    // Simple session expiry check (24 hours)
-    const isExpired = loginTime && (Date.now() - parseInt(loginTime) > 24 * 60 * 60 * 1000);
-
-    if (auth === 'true' && !isExpired) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-      localStorage.removeItem('admin_authenticated'); // Cleanup
-    }
-    setCheckingAuth(false);
-  };
+  // Removed legacy checkLocalAuth
 
   const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
+    // Session state is handled by the subscription above
     toast({ title: "Welcome back", description: "You have successfully logged in." });
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('admin_authenticated');
-    localStorage.removeItem('admin_login_time');
-    setIsAuthenticated(false);
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     toast({ title: "Logged Out", description: "See you next time." });
   };
 
@@ -83,7 +80,7 @@ const AdminPage = () => {
       <Helmet>
         <title>Admin Dashboard | Shivadhama Residency</title>
       </Helmet>
-      
+
       <Navbar />
 
       <main className="flex-grow container mx-auto px-4 py-12 relative">
@@ -94,14 +91,14 @@ const AdminPage = () => {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center hidden md:flex">
-               <Settings className="w-4 h-4 mr-2" />
-               Admin Mode Active
+              <Settings className="w-4 h-4 mr-2" />
+              Admin Mode Active
             </div>
-            
+
             {/* Save Button - Only shown for 'content' tab where context saving is needed */}
             {mainTab === 'content' && (
-              <Button 
-                onClick={handleGlobalSave} 
+              <Button
+                onClick={handleGlobalSave}
                 disabled={isSaving}
                 className={`min-w-[150px] shadow-sm transition-all active:scale-95 ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-700' : 'bg-green-600 hover:bg-green-700'} text-white`}
               >
@@ -126,30 +123,30 @@ const AdminPage = () => {
         <Tabs value={mainTab} onValueChange={setMainTab} className="w-full space-y-8">
           <div className="flex justify-center overflow-x-auto pb-2">
             <TabsList className="bg-white p-1 border border-gray-200 rounded-xl shadow-sm h-auto inline-flex min-w-max">
-               <TabsTrigger 
-                 value="content" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
-               >
-                 <LayoutDashboard className="w-4 h-4" /> Site Content & Global
-               </TabsTrigger>
-               <TabsTrigger 
-                 value="properties" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
-               >
-                 <Home className="w-4 h-4" /> Properties
-               </TabsTrigger>
-               <TabsTrigger 
-                 value="blog" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
-               >
-                 <FileText className="w-4 h-4" /> Blog Posts
-               </TabsTrigger>
-               <TabsTrigger 
-                 value="settings" 
-                 className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
-               >
-                 <UserCog className="w-4 h-4" /> Profile & Security
-               </TabsTrigger>
+              <TabsTrigger
+                value="content"
+                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+              >
+                <LayoutDashboard className="w-4 h-4" /> Site Content & Global
+              </TabsTrigger>
+              <TabsTrigger
+                value="properties"
+                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+              >
+                <Home className="w-4 h-4" /> Properties
+              </TabsTrigger>
+              <TabsTrigger
+                value="blog"
+                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+              >
+                <FileText className="w-4 h-4" /> Blog Posts
+              </TabsTrigger>
+              <TabsTrigger
+                value="settings"
+                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+              >
+                <UserCog className="w-4 h-4" /> Profile & Security
+              </TabsTrigger>
             </TabsList>
           </div>
 
@@ -160,7 +157,7 @@ const AdminPage = () => {
           <TabsContent value="properties" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminPropertiesManager />
           </TabsContent>
-          
+
           <TabsContent value="blog" className="focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2 duration-500">
             <AdminBlogManager />
           </TabsContent>
