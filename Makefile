@@ -32,7 +32,6 @@ clean-build:
 	@echo "Cleaning build artifacts..."
 	rm -rf dist
 
-
 # Clean everything (build artifacts and node_modules)
 clean: clean-build
 	@echo "Cleaning dependencies..."
