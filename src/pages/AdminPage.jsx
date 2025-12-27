@@ -130,10 +130,10 @@ const AdminPage = () => {
               onChange={(e) => setMainTab(e.target.value)}
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 font-medium focus:ring-2 focus:ring-maroon focus:border-maroon transition-all shadow-sm outline-none appearance-none"
             >
-              <option value="content">Site Content & Global</option>
+              <option value="content">Site Settings</option>
               <option value="properties">Properties</option>
               <option value="blog">Blog Posts</option>
-              <option value="settings">Profile & Security</option>
+              <option value="settings">Security</option>
             </select>
             <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
               <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

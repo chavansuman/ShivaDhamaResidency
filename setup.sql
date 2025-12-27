@@ -111,6 +111,35 @@ create policy "Allow public management of properties"
   with check ( true );
 
 
+-- -- -----------------------------------------------------------------------------
+-- -- 4. Storage Buckets
+-- -- -----------------------------------------------------------------------------
+-- -- Create storage buckets
+-- insert into storage.buckets (id, name, public)
+-- values 
+--   ('blog-images', 'blog-images', true),
+--   ('property-images', 'property-images', true),
+--   ('site-assets', 'site-assets', true)
+-- on conflict (id) do nothing;
+
+-- -- Storage Policies
+-- -- Simplified for public usage across all buckets
+-- create policy "Public Access"
+--   on storage.objects for select
+--   using ( true );
+
+-- create policy "Public Upload"
+--   on storage.objects for insert
+--   with check ( true );
+
+-- create policy "Public Update"
+--   on storage.objects for update
+--   using ( true );
+
+-- create policy "Public Delete"
+--   on storage.objects for delete
+--   using ( true );
+
 -- -----------------------------------------------------------------------------
 -- 4. Storage Buckets
 -- -----------------------------------------------------------------------------
