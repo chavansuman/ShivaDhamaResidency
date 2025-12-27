@@ -29,7 +29,7 @@ const MapSection = () => {
               Located in the Heart of Jayalakshmipuram
             </h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Experience the perfect blend of tranquility and connectivity. Shiva Dhama Residency is situated near Kalidasa Road, known for its peaceful atmosphere and proximity to major city hubs.
+              Experience the perfect blend of tranquility and connectivity. Shivadhama Residency is situated near Kalidasa Road, known for its peaceful atmosphere and proximity to major city hubs.
             </p>
             
             <div className="space-y-6 mb-8">

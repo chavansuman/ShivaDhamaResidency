@@ -37,14 +37,14 @@ const HeroSection = () => {
           className="text-center max-w-4xl mx-auto"
         >
           <motion.h1 
-            className="text-4xl md:text-7xl font-bold mb-6 drop-shadow-lg tracking-tight"
+            className="text-2xl md:text-5xl font-bold mb-6 drop-shadow-lg tracking-tight"
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.8 }}
           >
             {content.home?.heroTitle || "Welcome to Shivadhama Residency"}
           </motion.h1>
-          <p className="text-xl md:text-3xl mb-8 text-white/95 font-light drop-shadow-md">
+          <p className="text-xl md:text-2xl mb-8 text-white/95 font-light drop-shadow-md">
             {content.home?.heroSubtitle || "Premium Rental Apartments in the Heart of Mysuru"}
           </p>
           <div className="inline-flex items-center justify-center space-x-2 text-lg drop-shadow-md bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full border border-white/20">

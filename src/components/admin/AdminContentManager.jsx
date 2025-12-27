@@ -111,10 +111,10 @@ const AdminContentManager = () => {
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden animate-in fade-in duration-500">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="border-b border-gray-200 bg-gray-50 px-6 pt-4">
-          <TabsList className="bg-transparent space-x-2 h-auto p-0 pb-4 w-full justify-start overflow-x-auto">
+          <TabsList className="space-x-2 h-auto p-0 pb-4 w-full justify-start overflow-x-auto">
             <TabsTrigger 
               value="global"
-              className="data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:border-gray-200 border border-transparent px-6 py-2 rounded-lg"
+              className="data-[state=active]:bg-maroon data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=active]:border-gray-200 border border-transparent px-6 py-2 rounded-xl"
             >
               <Globe className="w-4 h-4 mr-2" /> Global Settings
             </TabsTrigger>
@@ -122,7 +122,7 @@ const AdminContentManager = () => {
               <TabsTrigger 
                 key={page} 
                 value={page}
-                className="data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:border-gray-200 border border-transparent px-6 py-2 rounded-lg capitalize"
+                className="data-[state=active]:bg-maroon data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=active]:border-gray-200 border border-transparent px-6 py-2 rounded-xl capitalize"
               >
                 {page === 'home' && <Home className="w-4 h-4 mr-2" />}
                 {page}

@@ -30,8 +30,11 @@ const Navbar = () => {
             <span className="text-xl font-bold text-gray-900 hidden sm:inline-block">
               {content.global?.siteName || "Shivadhama Residency"}
             </span>
-            <span className="text-xl font-bold text-gray-900 sm:hidden">
+            {/* <span className="text-xl font-bold text-gray-900 sm:hidden">
               {content.global?.siteName?.split(' ')[0] || "Shivadhama"}
+            </span> */}
+            <span className="text-sm font-bold text-gray-900 sm:hidden">
+              {content.global?.siteName}
             </span>
           </Link>
           

@@ -65,7 +65,7 @@ const LocationPage = () => {
     <>
       <Helmet>
         <title>No Broker Rental Homes Near Me Mysuru | Shivadhama Residency</title>
-        <meta name="description" content="Looking for broker-free rental homes near me in Mysuru? Shiva Dhama Residency offers direct owner rentals in Jayalakshmipuram. 1BHK, 2BHK, 3BHK houses with zero brokerage. Near University & IT hubs." />
+        <meta name="description" content="Looking for broker-free rental homes near me in Mysuru? Shivadhama Residency offers direct owner rentals in Jayalakshmipuram. 1BHK, 2BHK, 3BHK houses with zero brokerage. Near University & IT hubs." />
         <meta name="keywords" content="no broker houses in mysore, rental homes near me, broker free house for rent in mysore, house for rent in jayalakshmipuram mysore, direct owner rental mysore, 2bhk for rent in mysore without broker" />
       </Helmet>
       

@@ -86,13 +86,13 @@ const AdminPage = () => {
       <main className="flex-grow container mx-auto px-4 py-12 relative">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
             <p className="text-gray-500 mt-1">Manage all aspects of your property website</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center hidden md:flex">
               <Settings className="w-4 h-4 mr-2" />
-              Admin Mode Active
+              Logged in as Admin
             </div>
 
             {/* Save Button - Only shown for 'content' tab where context saving is needed */}
@@ -121,31 +121,53 @@ const AdminPage = () => {
         </div>
 
         <Tabs value={mainTab} onValueChange={setMainTab} className="w-full space-y-8">
-          <div className="flex justify-center overflow-x-auto pb-2">
-            <TabsList className="bg-white p-1 border border-gray-200 rounded-xl shadow-sm h-auto inline-flex min-w-max">
+          {/* Mobile View: Select Dropdown */}
+          <div className="block md:hidden relative">
+            <label htmlFor="admin-tabs" className="sr-only">Select a section</label>
+            <select
+              id="admin-tabs"
+              value={mainTab}
+              onChange={(e) => setMainTab(e.target.value)}
+              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 font-medium focus:ring-2 focus:ring-maroon focus:border-maroon transition-all shadow-sm outline-none appearance-none"
+            >
+              <option value="content">Site Content & Global</option>
+              <option value="properties">Properties</option>
+              <option value="blog">Blog Posts</option>
+              <option value="settings">Profile & Security</option>
+            </select>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+              <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Desktop View: Tabs List */}
+          <div className="hidden md:flex justify-center">
+            <TabsList className="bg-white p-1 border border-gray-200 rounded-xl shadow-sm h-auto inline-flex">
               <TabsTrigger
                 value="content"
-                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                className="px-6 py-3 rounded-xl data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
               >
-                <LayoutDashboard className="w-4 h-4" /> Site Content & Global
+                <LayoutDashboard className="w-4 h-4" /> Site Settings
               </TabsTrigger>
               <TabsTrigger
                 value="properties"
-                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                className="px-6 py-3 rounded-xl data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
               >
                 <Home className="w-4 h-4" /> Properties
               </TabsTrigger>
               <TabsTrigger
                 value="blog"
-                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                className="px-6 py-3 rounded-xl data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
               >
                 <FileText className="w-4 h-4" /> Blog Posts
               </TabsTrigger>
               <TabsTrigger
                 value="settings"
-                className="px-6 py-3 rounded-lg data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
+                className="px-6 py-3 rounded-xl data-[state=active]:bg-maroon data-[state=active]:text-white transition-all flex items-center gap-2"
               >
-                <UserCog className="w-4 h-4" /> Profile & Security
+                <UserCog className="w-4 h-4" /> Security
               </TabsTrigger>
             </TabsList>
           </div>

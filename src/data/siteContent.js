@@ -15,7 +15,7 @@ export const initialSiteContent = {
     whyChooseSubtitle: "We don't just rent apartments; we provide homes. Experience a hassle-free lifestyle in Mysuru's most prestigious neighborhood."
   },
   about: {
-    title: "About Shiva Dhama Residency",
+    title: "About Shivadhama Residency",
     subtitle: "Modern, spacious rental homes—100% broker-free—right in Mysuru",
     features: [
       "Affordable Rent",
@@ -23,8 +23,8 @@ export const initialSiteContent = {
       "Well-Maintained Units",
       "Prime Residential Location"
     ],
-    welcomeParagraph1: "Welcome to Shiva Dhama Residency, a peaceful and family-friendly rental community in Mysuru. We believe that finding a home should be simple, transparent, and free from brokerage. That's why we offer direct-owner rental houses, allowing you to save money and enjoy complete clarity in rent, deposit, and agreements.",
-    welcomeParagraph2: "Our property is thoughtfully designed for comfort and convenience. Every house is well-ventilated, naturally lit, and located in a calm neighbourhood with easy access to schools, shops, hospitals, transportation, and daily essentials. Whether you are a working professional, a couple, or a family looking for long-term stay, Shiva Dhama Residency provides a safe and comfortable living experience. At Shiva Dhama Residency, we value honesty, cleanliness, and trust. We maintain all units personally, ensuring a smooth and hassle-free renting process. With us, you don't deal with agents — you connect directly with the owner for clear communication and a stress-free stay.",
+    welcomeParagraph1: "Welcome to Shivadhama Residency, a peaceful and family-friendly rental community in Mysuru. We believe that finding a home should be simple, transparent, and free from brokerage. That's why we offer direct-owner rental houses, allowing you to save money and enjoy complete clarity in rent, deposit, and agreements.",
+    welcomeParagraph2: "Our property is thoughtfully designed for comfort and convenience. Every house is well-ventilated, naturally lit, and located in a calm neighbourhood with easy access to schools, shops, hospitals, transportation, and daily essentials. Whether you are a working professional, a couple, or a family looking for long-term stay, Shivadhama Residency provides a safe and comfortable living experience. At Shivadhama Residency, we value honesty, cleanliness, and trust. We maintain all units personally, ensuring a smooth and hassle-free renting process. With us, you don't deal with agents — you connect directly with the owner for clear communication and a stress-free stay.",
     valuesTitle: "Our Values",
     values: [
       { name: "Transparency", description: "No brokerage, no hidden charges." },
@@ -33,7 +33,7 @@ export const initialSiteContent = {
       { name: "Trust", description: "Direct dealing with the property owner." }
     ],
     closingParagraph: "We are committed to offering rental homes that bring peace, comfort, and happiness to every family.",
-    finalLine: "Your new home in Mysuru begins here — at Shiva Dhama Residency."
+    finalLine: "Your new home in Mysuru begins here — at Shivadhama Residency."
   },
   contact: {
     title: "Get in Touch",
@@ -45,7 +45,7 @@ export const initialSiteContent = {
     title: "The Heart of Mysuru",
     subtitle: "Discover premium, broker-free rental homes in the prestigious Jayalakshmipuram neighborhood.",
     descriptionTitle: "Prime Location, Zero Brokerage",
-    descriptionText: "Searching for 'rental homes near me' or 'no broker house for rent in Mysore'? Look no further. Shiva Dhama Residency is strategically located in Jayalakshmipuram, offering the perfect balance of serenity and city connectivity. By renting directly from the owner, you avoid unnecessary brokerage fees while securing a home in one of Mysuru's safest and most upscale localities. Whether you need a 1BHK, 2BHK, or 3BHK, our homes provide easy access to the Outer Ring Road, Mysore University, and major IT hubs, making your daily commute effortless.",
+    descriptionText: "Searching for 'rental homes near me' or 'no broker house for rent in Mysore'? Look no further. Shivadhama Residency is strategically located in Jayalakshmipuram, offering the perfect balance of serenity and city connectivity. By renting directly from the owner, you avoid unnecessary brokerage fees while securing a home in one of Mysuru's safest and most upscale localities. Whether you need a 1BHK, 2BHK, or 3BHK, our homes provide easy access to the Outer Ring Road, Mysore University, and major IT hubs, making your daily commute effortless.",
     nearbyTitle: "What's Nearby?",
     nearbyDesc: "Everything you need is just around the corner from your new rental home.",
     attractionsTitle: "Famous Attractions",

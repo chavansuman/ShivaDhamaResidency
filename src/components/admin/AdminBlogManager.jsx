@@ -193,7 +193,7 @@ const AdminBlogManager = () => {
            <p className="text-gray-500 text-sm mt-1">Manage your articles, news, and updates</p>
         </div>
         <Button onClick={handleAddNew} className="bg-maroon hover:bg-maroon-dark text-white">
-          <Plus className="w-4 h-4 mr-2" /> New Post
+          <Plus className="w-4 h-4 mr-2" /> Add
         </Button>
       </div>
 

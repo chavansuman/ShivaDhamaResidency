@@ -94,6 +94,7 @@ const PropertyDetailPage = () => {
             size="sm" 
             onClick={handleShortlist}
             className="flex items-center border-maroon text-maroon hover:bg-maroon hover:text-white"
+            style={{ display: 'none' }}
           >
             <Heart className="w-4 h-4 mr-2" />
             Shortlist
@@ -329,7 +330,7 @@ const PropertyDetailPage = () => {
                   <Compass className="w-6 h-6 text-maroon" /> 
                   Virtual Tour
                 </h2>
-                <p className="text-gray-600 mb-4">Explore {property.title} with our immersive 360° virtual tour. Drag to look around, and scroll or pinch to zoom.</p>
+                <p className="text-gray-600 mb-4">Explore <span className="font-bold text-maroon">{property.title}</span> with our immersive 360° virtual tour. Drag to look around, and scroll or pinch to zoom.</p>
                 {property.virtualTour.rooms.map((room, index) => (
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{room.name}</h3>
@@ -368,7 +369,7 @@ const PropertyDetailPage = () => {
                     </div>
                  )}
                  <Link to="/">
-                    <Button className="w-full bg-red-600 hover:bg-red-700">
+                    <Button className="w-full bg-maroon hover:bg-maroon/80 text-white">
                       View Other Available Units
                     </Button>
                  </Link>
