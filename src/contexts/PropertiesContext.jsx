@@ -69,20 +69,20 @@ export const PropertiesProvider = ({ children }) => {
         .select('*')
         .order('display_order', { ascending: true })
         .order('created_at', { ascending: true });
-      
+
       if (error) {
         console.warn("Supabase fetch error:", error.message);
         // Fallback to local
         if (properties.length === 0) setProperties(initialProperties);
         return;
       }
-      
+
       if (data && data.length > 0) {
         const mappedData = data.map(mapFromDb);
         setProperties(mappedData);
       } else {
-         // If DB is empty (rare case after migration, but safe fallback)
-         setProperties(initialProperties);
+        // If DB is empty (rare case after migration, but safe fallback)
+        setProperties(initialProperties);
       }
     } catch (error) {
       console.error("Error loading properties:", error);
@@ -111,16 +111,16 @@ export const PropertiesProvider = ({ children }) => {
               // Sort local list to match DB order
               return newList.sort((a, b) => (a.displayOrder || 100) - (b.displayOrder || 100));
             });
-          } 
+          }
           else if (payload.eventType === 'UPDATE') {
             const updatedRecord = mapFromDb(payload.new);
             setProperties((prev) => {
-               const updatedList = prev.map((item) => item.id === payload.new.id ? updatedRecord : item);
-               return updatedList.sort((a, b) => (a.displayOrder || 100) - (b.displayOrder || 100));
+              const updatedList = prev.map((item) => item.id === payload.new.id ? updatedRecord : item);
+              return updatedList.sort((a, b) => (a.displayOrder || 100) - (b.displayOrder || 100));
             });
-          } 
+          }
           else if (payload.eventType === 'DELETE') {
-            setProperties((prev) => 
+            setProperties((prev) =>
               prev.filter((item) => item.id !== payload.old.id)
             );
           }
@@ -135,11 +135,11 @@ export const PropertiesProvider = ({ children }) => {
 
   const updateProperty = async (updatedProperty) => {
     setProperties(prev => prev.map(p => p.id === updatedProperty.id ? updatedProperty : p));
-    
+
     try {
       const dbPayload = mapToDb(updatedProperty);
       const { id, ...updates } = dbPayload;
-      
+
       const { error } = await supabase
         .from('properties')
         .update(updates)
@@ -159,13 +159,13 @@ export const PropertiesProvider = ({ children }) => {
 
   const addProperty = async (newProperty) => {
     const tempId = newProperty.id || `prop_${Date.now()}`;
-    const propertyWithId = { 
-      ...newProperty, 
+    const propertyWithId = {
+      ...newProperty,
       id: tempId,
       created_at: new Date().toISOString(),
       displayOrder: 100 // Default to end of list
     };
-    
+
     setProperties(prev => [...prev, propertyWithId]);
 
     try {
@@ -193,18 +193,19 @@ export const PropertiesProvider = ({ children }) => {
         throw error;
       }
     } catch (err) {
-       fetchProperties();
-       throw err;
+      fetchProperties();
+      throw err;
     }
   };
 
   return (
-    <PropertiesContext.Provider value={{ 
-      properties, 
-      loading, 
-      updateProperty, 
-      addProperty, 
+    <PropertiesContext.Provider value={{
+      properties,
+      loading,
+      updateProperty,
+      addProperty,
       deleteProperty,
+      setProperties,
       refreshProperties: fetchProperties
     }}>
       {children}

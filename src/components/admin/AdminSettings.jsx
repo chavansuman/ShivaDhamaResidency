@@ -178,22 +178,22 @@ const AdminSettings = () => {
                     <UserCog className="w-6 h-6" />
                 </div>
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-900">System Settings</h2>
-                    <p className="text-gray-500">Manage credentials and data retention</p>
+                    <h2 className="text-2xl font-bold text-gray-900">Security</h2>
+                    <p className="text-gray-500">Manage your security settings</p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
                 {/* Column 1: Profile */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Admin Profile</CardTitle>
-                        <CardDescription>Update login credentials</CardDescription>
+                        <CardTitle>Configure Login Credentials</CardTitle>
+                        <CardDescription style={{ display: 'none' }}>Update your login credentials</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="currentUsername">Email (Username)</Label>
+                                <Label htmlFor="currentUsername">Username</Label>
                                 {isFetchingUser ? (
                                     <div className="h-10 w-full bg-gray-100 animate-pulse rounded-md" />
                                 ) : (
@@ -206,7 +206,7 @@ const AdminSettings = () => {
                                         className="bg-gray-100 text-gray-500 cursor-not-allowed"
                                     />
                                 )}
-                                <p className='text-xs text-gray-500'>To change email, please contact system administrator or create a new user.</p>
+                                <p className='text-xs text-gray-500'>To change your username, please contact the system administrator.</p>
                             </div>
                             <div className="pt-4 border-t mt-4">
                                 <PasswordField
@@ -216,7 +216,7 @@ const AdminSettings = () => {
                                     onChange={handleChange}
                                     show={showCurrentPass}
                                     setShow={setShowCurrentPass}
-                                    placeholder="To verify changes"
+                                    placeholder="Enter your current password"
                                     icon={Lock}
                                     required={true}
                                 />
@@ -228,7 +228,7 @@ const AdminSettings = () => {
                                 onChange={handleChange}
                                 show={showNewPass}
                                 setShow={setShowNewPass}
-                                placeholder="New password"
+                                placeholder="Enter your new password"
                                 icon={Lock}
                             />
                             <PasswordField
@@ -238,18 +238,18 @@ const AdminSettings = () => {
                                 onChange={handleChange}
                                 show={showConfirmPass}
                                 setShow={setShowConfirmPass}
-                                placeholder="Confirm new password"
+                                placeholder="Confirm your new password"
                                 icon={ShieldCheck}
                             />
-                            <Button type="submit" disabled={isLoading || !formData.currentPassword} className="w-full bg-maroon hover:bg-maroon-dark">
-                                {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />} Save Profile
+                            <Button type="submit" disabled={isLoading || !formData.currentPassword} className="w-full bg-maroon hover:bg-maroon-dark text-white">
+                                {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />} Save
                             </Button>
                         </form>
                     </CardContent>
                 </Card>
 
                 {/* Column 2: Data Management */}
-                <Card className="h-fit">
+                <Card className="h-fit" style={{ display: "none" }}>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <Database className="w-5 h-5" /> Data Management
