@@ -141,7 +141,7 @@ const PropertyDetailPage = () => {
                     Status: {property.status}
                   </div>
                   {availableDate && (
-                    <div className="text-sm font-medium text-maroon flex items-center bg-maroon/5 px-3 py-1 rounded-full">
+                    <div className="text-sm font-medium text-maroon flex items-center bg-maroon/5 px-3 py-1 rounded-full" style={{ display: 'none' }}>
                       <Calendar className="w-3.5 h-3.5 mr-2" />
                       Available from: {availableDate}
                     </div>
@@ -357,15 +357,15 @@ const PropertyDetailPage = () => {
             ) : (
               <div className="bg-red-50 border border-red-200 rounded-lg p-6 shadow-sm sticky top-24">
                  <h3 className="text-xl font-bold text-red-700 mb-2 flex items-center">
-                   <Ban className="w-6 h-6 mr-2" /> This Unit is Occupied
+                   <Ban className="w-6 h-6 mr-2" /> {property.status  === 'Maintenance' ? 'This Unit is under maintenance.' : 'Sorry! This Unit is occupied.'}
                  </h3>
-                 <p className="text-gray-700 mb-4">
+                 <p className="text-gray-700 mb-4" style={{ display: 'none' }}>
                    This property is currently occupied.
                  </p>
                  {availableDate && (
                     <div className="mb-4 bg-white p-3 rounded border border-red-100 text-sm font-medium text-red-800 flex items-center">
                        <Calendar className="w-4 h-4 mr-2" />
-                       Available again from: {availableDate}
+                       Available from: {availableDate}
                     </div>
                  )}
                  <Link to="/">
